@@ -28,5 +28,6 @@ public class LinkListTest {
         Integer remove = links.remove(2);
         links.clear();
         System.out.println(links.isEmpty());
+        System.out.println("测试GitHub的clone是否成功");
     }
 }

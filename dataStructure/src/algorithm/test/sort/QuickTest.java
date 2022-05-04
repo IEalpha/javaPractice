@@ -1,4 +1,4 @@
-package algorithm.test;
+package algorithm.test.sort;
 
 import algorithm.sort.advanced.Quick;
 

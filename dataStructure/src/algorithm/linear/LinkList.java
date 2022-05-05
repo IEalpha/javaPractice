@@ -17,7 +17,7 @@ public class LinkList<T> implements Iterable<T> {
 
 
     //成员内部类
-    public class Node {
+    private class Node {
         T item;
         Node next;
 
@@ -115,7 +115,7 @@ public class LinkList<T> implements Iterable<T> {
 
     private class LIterator implements Iterator {
 
-        private Node n;
+        private LinkList.Node n;
 
         public LIterator() {
             this.n = head;

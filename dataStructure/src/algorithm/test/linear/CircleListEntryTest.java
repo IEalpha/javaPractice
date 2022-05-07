@@ -22,9 +22,9 @@ public class CircleListEntryTest {
         fourth.next = fifth;
         fifth.next = sixth;
         sixth.next = seventh;
-        seventh.next = sixth;
+//        seventh.next = sixth;
 
-        System.out.println(getEntrance(first).item);
+        System.out.println(getEntrance(first) == null ? "Not a circled linkList" : getEntrance(first).item);
     }
 
     public static Node<String> getEntrance(Node<String> first) {

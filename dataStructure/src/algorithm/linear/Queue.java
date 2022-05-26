@@ -1,15 +1,18 @@
 package algorithm.linear;
 
+import java.util.Iterator;
+
 /**
  * @author LiuHanxu
  * @Classname Queue
  * @Description TODO 队列
  * @Date 2022/5/14 16:56
  */
-public class Queue<T> {
+public class Queue<T> implements Iterable<T> {
     private Node head;
     private Node last;
     private int N;
+
 
     private class Node {
         public T item;
@@ -62,6 +65,30 @@ public class Queue<T> {
             this.head.next = this.head.next.next;
             this.N--;
             return t;
+        }
+    }
+    @Override
+    public Iterator<T> iterator() {
+        return new QIterator();
+    }
+
+    private class QIterator implements Iterator<T> {
+
+        private Node node;
+
+        public QIterator() {
+            this.node = head;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return node.next != null;
+        }
+
+        @Override
+        public T next() {
+            node = node.next;
+            return node.item;
         }
     }
 }

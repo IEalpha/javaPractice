@@ -1,6 +1,8 @@
 package algorithm.tree;
 
 
+import algorithm.linear.Queue;
+
 /**
  * @author LiuHanxu
  * @Classname BinaryTree
@@ -110,5 +112,133 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
             this.N--;
         }
         return x;
+    }
+
+    //找出最小键
+    public Key min() {
+        return min(root).key;
+    }
+
+    //找出最小键所在的节点
+    public Node min(Node node) {
+        while (node.left != null) {
+            node = node.left;
+        }
+        return node;
+    }
+
+    //找到最大的键
+    public Key max() {
+        return max(root).key;
+    }
+
+    //找出最大键所在的节点
+    public Node max(Node node) {
+        while (node.right != null) {
+            node = node.right;
+        }
+        return node;
+    }
+
+    //使用前序遍历获得整个树中所有的Key
+    public Queue<Key> preErgodic() {
+        Queue<Key> keys = new Queue<>();
+        preErgodic(root, keys);
+        return keys;
+    }
+
+    //使用前序遍历，获取指定树的所有Key并放到keys中
+    private void preErgodic(Node node, Queue<Key> keys) {
+        if (node == null) {
+            return;
+        }
+        keys.enqueue(node.key);
+        if (node.left != null) {
+            preErgodic(node.left, keys);
+        }
+        if (node.right != null) {
+            preErgodic(node.right, keys);
+        }
+    }
+
+    //使用中序遍历，获取整个树中的所有键
+    public Queue<Key> midErgodic() {
+        Queue<Key> keys = new Queue<>();
+        midErgodic(root, keys);
+        return keys;
+    }
+
+    //使用中序遍历，把指定树中的所有键放到keys中
+    private void midErgodic(Node node, Queue<Key> keys) {
+        if (node == null) {
+            return;
+        }
+        if (node.left != null) {
+            midErgodic(node.left, keys);
+        }
+        keys.enqueue(node.key);
+        if (node.right != null) {
+            midErgodic(node.right, keys);
+        }
+    }
+
+    //后序遍历
+    public Queue<Key> afterErgodic() {
+        Queue<Key> keys = new Queue<>();
+        afterErgodic(root, keys);
+        return keys;
+    }
+
+    private void afterErgodic(Node node, Queue<Key> keys) {
+        if (node == null) {
+            return;
+        }
+        if (node.left != null) {
+            afterErgodic(node.left, keys);
+        }
+        if (node.right != null) {
+            afterErgodic(node.right, keys);
+        }
+        keys.enqueue(node.key);
+    }
+
+    //层序遍历整个树，获得所有节点的key
+    public Queue<Key> layerErgodic() {
+        Queue<Key> keys = new Queue<>();
+        Queue<Node> nodes = new Queue<>();
+        Node node = this.root;
+        nodes.enqueue(node);
+        while (!nodes.isEmpty()) {
+            Node outNode = nodes.dequeue();
+            keys.enqueue(outNode.key);
+            if (outNode.left != null) {
+                nodes.enqueue(outNode.left);
+            }
+            if (outNode.right != null) {
+                nodes.enqueue(outNode.right);
+            }
+        }
+        return keys;
+    }
+
+    //获取整个数的最大深度
+    public int maxDepth() {
+        return maxDepth(this.root);
+    }
+
+    //获取指定树的最大深度
+    private int maxDepth(Node node) {
+        if (node == null) {
+            return 0;
+        }
+        int left = 0;
+        int right = 0;
+        if (node.left != null) {
+            left = maxDepth(node.left);
+        }
+        if (node.right != null) {
+            right = maxDepth(node.right);
+        }
+        return Math.max(left, right) + 1;
     }
 }

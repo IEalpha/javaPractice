@@ -24,6 +24,10 @@ public class Graph {
         return V;
     }
 
+    /**
+     * 获得边的数目
+     * @return
+     */
     public int E() {
         return E;
     }
@@ -46,6 +50,6 @@ public class Graph {
      * @return
      */
     public Queue<Integer> adj(int v) {
-        return adj(v);
+        return adj[v];
     }
 }

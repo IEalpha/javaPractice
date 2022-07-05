@@ -1,3 +1,6 @@
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 /**
  * @author LiuHanxu
  * @Classname Test1
@@ -6,10 +9,12 @@
  */
 public class Test1 {
     public static void main(String[] args) {
-        long l1 = System.currentTimeMillis();
-        sum2();
-        long l2 = System.currentTimeMillis();
-        System.out.println(l2 - l1);
+        Set<Integer> set = new LinkedHashSet<>();
+        set.add(1);
+        set.add(2);
+        int i = set.iterator().next();
+        System.out.println(i);
+
     }
 
     private static void sum1() {

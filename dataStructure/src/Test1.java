@@ -1,3 +1,6 @@
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 /**
  * @author LiuHanxu
  * @Classname Test1
@@ -6,10 +9,12 @@
  */
 public class Test1 {
     public static void main(String[] args) {
-        long l1 = System.currentTimeMillis();
-        sum2();
-        long l2 = System.currentTimeMillis();
-        System.out.println(l2 - l1);
+//        Set<Integer> set = new LinkedHashSet<>();
+//        set.add(1);
+//        set.add(2);
+//        int i = set.iterator().next();
+//        System.out.println(i);
+        sortedSquares(new int[]{-4, -1, 0, 3, 10});
     }
 
     private static void sum1() {
@@ -26,5 +31,30 @@ public class Test1 {
         int n = 1000000;
         sum = (n + 1) * n / 2;
         System.out.println(sum);
+    }
+    public static int[] sortedSquares(int[] nums) {
+        for(int i = 0;i < nums.length;i++) {
+            nums[i] = nums[i] * nums[i];
+        }
+        sort(nums);
+        return nums;
+    }
+
+    public static void sort(int[] nums) {
+        int maxIndex = 0;
+        for(int i = nums.length - 1;i > 0;i--) {
+            for(int j = 0;j <= i;j++) {
+                if(nums[maxIndex] < nums[j]) {
+                    maxIndex = j;
+                }
+            }
+            exchange(nums, maxIndex, i);
+        }
+    }
+
+    public static void exchange(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 }
